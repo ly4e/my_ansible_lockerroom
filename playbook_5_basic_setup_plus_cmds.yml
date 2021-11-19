@@ -1,0 +1,143 @@
+-
+  name: 'Execute multiple commands on target system(s)-localhost'
+  #hosts: lts
+  #hosts: U643
+  hosts: controller
+  #hosts: localhost
+  tasks:
+    - name: Adding kali-rolling repo to /etc/apt/sources.list
+      become: true
+      lineinfile:
+          path: /etc/apt/sources.list
+          line: 'deb http://http.kali.org/kali kali-rolling main non-free contrib'
+          state: present
+    
+    - name: Adding commented kali-rolling repo to /etc/apt/sources.list
+      become: true
+      lineinfile:
+          path: /etc/apt/sources.list
+          line: '#deb http://http.kali.org/kali kali-rolling main non-free contrib'
+          state: present
+
+    - name: Adding Apt signing key for the kali repo
+      become: true
+      ansible.builtin.apt_key:
+          # ### to add the key to the key ring ###
+          # ### https://forums.linuxmint.com/viewtopic.php?t=342012 ###
+          # sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com ED444FF07D8D0BF6
+          # ###
+          # reference: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_key_module.html
+          # obtain the full length key id
+          # apt-key adv --list-public-keys --with-fingerprint --with-colons 
+          id: 44C6513A8E4FB3D30875F758ED444FF07D8D0BF6
+          keyserver: keyserver.ubuntu.com
+          state: present
+
+    - name: Running the equivalent of "apt-get update" as a separate step IF the last update was more than 3600 seconds ago 
+      apt:
+          update_cache: yes
+          cache_valid_time: 3600
+      become: true
+
+    #https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
+    - name: install listed packages
+      package:
+          name={{ item }} state=latest
+      become: true
+      with_items:
+        - vim
+        - zsh
+        - bat
+        - exa
+        - fd-find
+        - jq
+        - fzf
+        - peco
+        - lolcat
+        - tmux
+        - tree
+        - nmap
+        - amass
+        - rust-all
+        - cargo
+        - golang
+        - python3
+        - gobuster
+        - feroxbuster
+        - seclists
+        - metasploit-framework
+        - hashid
+        - hashcat
+        - burpsuite
+        - zaproxy
+
+    - name: cargo install rustscan
+      shell:
+          cmd: cargo install rustscan
+           
+    - name: Removing kali-rolling repo from /etc/apt/sources.list
+      become: true
+      lineinfile:
+          path: /etc/apt/sources.list
+          line: 'deb http://http.kali.org/kali kali-rolling main non-free contrib'
+          state: absent
+
+    - name: Refreshing "apt update" 
+      apt:
+          update_cache: yes
+      become: true
+
+ ### https://chaosmail.github.io/programming/2015/03/04/install-deb-packages-in-ansible/
+    - name: Check if VS Code is installed
+      command: dpkg-query -W code
+      register: my_package_check_deb
+      failed_when: my_package_check_deb.rc > 1
+      changed_when: my_package_check_deb.rc == 1
+    
+    - name: Installing VS Code from a .deb package from the internet
+      apt:
+         #https://code.visualstudio.com/docs/setup/linux
+         deb: https://go.microsoft.com/fwlink/?LinkID=760868
+      become: true
+      when: my_package_check_deb.rc == 1
+
+    # - name: Remove useless packages from the cache
+    #   apt:
+    #       autoclean: yes
+    #   become: true
+
+    # - name: Remove dependencies that are no longer required
+    #   apt:
+    #       autoremove: yes
+    #   become: true
+
+    ### installing customer dotfiles and zsh configurations ###
+    - name: ensuring the zgenom repo clone exists
+      ansible.builtin.git:
+          repo: 'https://github.com/jandamm/zgenom.git'
+          dest: ~/.zgenom
+          update: no
+
+    - name: Just ensuring the repo checkout exists
+      ansible.builtin.git:
+          repo: 'https://github.com/ly4e/customized_dotfiles_linux.git'
+          dest: ~/.dotfiles
+          update: no
+    
+    - name: activate DotBot for linking and zsh configuration
+      shell:
+          cmd: ~/.dotfiles/install
+
+  ### cloning PTF for testing purposes
+    - name: ensuring the pentesters freamwork (PTF) repo clone exists
+      ansible.builtin.git:
+          repo: 'https://github.com/trustedsec/ptf/'
+          dest: ~/PTF
+          update: no
+
+  ### cloning custom_lists for the PTF
+    - name: loading custom_list files for the the pentesters freamwork (PTF)
+      ansible.builtin.git:
+          repo: 'https://github.com/ly4e/custom_PTF_module_files.git'
+          dest: ~/PTF/modules/custom_list/my_files
+          update: no
