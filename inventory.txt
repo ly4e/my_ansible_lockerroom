@@ -1,0 +1,36 @@
+# Sample inventory file
+
+# Centos servers
+kube ansible_host=localhost ansible_user=bkm
+
+U641    ansible_host=192.168.105.50     ansible_user=bkm
+U642    ansible_host=192.168.105.219    ansible_user=bkm
+U643    ansible_host=192.168.105.24     ansible_user=bkm
+
+
+#controller box
+[controller]
+kube
+
+#raspberry pi's
+[pi]
+pi5     ansible_host=192.168.105.5      ansible_user=pi
+pi10    ansible_host=192.168.105.10     ansible_user=pi
+
+#LTS installs
+[lts]
+U641
+U642
+U643
+
+# ubuntu servers
+[ubuntu]
+kube
+U641
+U642
+U643
+
+[all_servers:children]
+controller
+ubuntu
+lts
