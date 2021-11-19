@@ -1,0 +1,110 @@
+-
+  name: 'Execute multiple commands on target system(s)-localhost'
+  #hosts: lts
+  hosts: U643
+  #hosts: controller
+  #hosts: localhost
+  tasks:
+
+    - name: Running the equivalent of "apt-get update" as a separate step IF the last update was more than 3600 seconds ago 
+      apt:
+          update_cache: yes
+          cache_valid_time: 3600
+      become: true
+
+    #https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
+    - name: install listed packages
+      package:
+          name={{ item }} state=latest
+      become: true
+      with_items:
+        - vim
+        - git
+        - curl
+        - zsh
+        - bat
+        - fd-find
+        - jq
+        - fzf
+        - peco
+        - lolcat
+        - tmux
+        - tree
+        - htop
+        - aptitude
+        - rust-all
+        - cargo
+        - golang
+        - python3
+        - gobuster
+        - hashid
+        # other tools
+#        - nmap       #available via PTF
+#        - hashcat    #available via PTF
+      ### #failed without kali repo# ###
+        # - exa       ## available via kali repo
+        # - amass     #available via PTF
+        # - feroxbuster   ## available via kali repo
+        # - seclists  #available via PTF
+        # - metasploit-framework    #available via PTF
+        # - burpsuite #available via PTF
+        # - zaproxy   #available via PTF
+
+    - name: cargo install rustscan
+      shell:
+          cmd: cargo install rustscan
+
+ ### https://chaosmail.github.io/programming/2015/03/04/install-deb-packages-in-ansible/
+    - name: Check if VS Code is installed
+      command: dpkg-query -W code
+      register: my_package_check_deb
+      failed_when: my_package_check_deb.rc > 1
+      changed_when: my_package_check_deb.rc == 1
+
+    - name: Installing VS Code from a .deb package from the internet
+      apt:
+         #https://code.visualstudio.com/docs/setup/linux
+         deb: https://go.microsoft.com/fwlink/?LinkID=760868
+      become: true
+      when: my_package_check_deb.rc == 1
+
+    # - name: Remove useless packages from the cache
+    #   apt:
+    #       autoclean: yes
+    #   become: true
+
+    # - name: Remove dependencies that are no longer required
+    #   apt:
+    #       autoremove: yes
+    #   become: true
+
+  ### installing custom dotfiles and zsh configurations ###
+    - name: ensuring the zgenom repo clone exists
+      ansible.builtin.git:
+          repo: 'https://github.com/jandamm/zgenom.git'
+          dest: ~/.zgenom
+          update: no
+
+    - name: Just ensuring the Dotfiles repo clone exists
+      ansible.builtin.git:
+          repo: 'https://github.com/ly4e/customized_dotfiles_linux.git'
+          dest: ~/.dotfiles
+          update: no
+    
+    - name: activate DotBot for linking and zsh configuration
+      shell:
+          cmd: ~/.dotfiles/install
+
+  ### cloning PTF for testing purposes
+    - name: ensuring the pentesters freamwork (PTF) repo clone exists
+      ansible.builtin.git:
+          repo: 'https://github.com/trustedsec/ptf/'
+          dest: ~/PTF
+          update: no
+
+  ### cloning custom_lists for the PTF
+    - name: loading custom_list files for the the pentesters freamwork (PTF)
+      ansible.builtin.git:
+          repo: 'https://github.com/ly4e/custom_PTF_module_files.git'
+          dest: ~/PTF/modules/custom_list/my_files
+          update: no
