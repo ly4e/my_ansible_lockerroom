@@ -19,7 +19,7 @@
 > (more of a combination of playbooks 1 and 2)
 
 ### playbook_99_creating_extra_users_w_rand_passwords:
-> sample playbook for creating multiple user accounts with random passwords
+> sample playbook: creates multiple user accounts with random passwords
 
 
 
