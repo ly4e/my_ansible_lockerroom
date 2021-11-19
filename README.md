@@ -1,4 +1,4 @@
-# My Ansible Locker Room of Ansible Playbooks and related notes
+# My Ansible Locker Room of Playbooks and Notes
 
 ## Descriptions
 ### playbook_1_init_system_configuration:
