@@ -1,15 +1,31 @@
 # My Ansible Locker Room of Ansible Playbooks and related notes
 
 ## Descriptions
-1: basic configuration for getting a system up and running
+### playbook_1_init_system_configuration:
+> basic configuration for getting a system up and running
+> 
+> Installs some basic packages, VSCode, zgenom, my dotfile repo, and the Pentesters Framwork (PTF)
 
-2: configuring kali repos and installing limited tools
+### playbook_2_add_and_install_from_kali_repos:
+> configures kali-rolling with its certificate and installs limited tools then removes the Kali repo from the sources.list
+> 
+> currently leaves an extra commented out version of the kali repo for ease of searching and testing
 
-5: configuring more of the system leveraging kali repos for teh packages
+### playbook_5_basic_setup_plus_cmds:
+> basic configuration for getting a system up and running
+> 
+> Installs more packages from the kali-rolling repo
+>
+> (more of a combination of playbooks 1 and 2)
 
-99: sample playbook for creating multiple users with random passwords
+### playbook_99_creating_extra_users_w_rand_passwords:
+> sample playbook for creating multiple user accounts with random passwords
 
 
+
+---
+---
+---
 #### sample commands for future reference(s)
 ```
 ansible pi -i inventory.txt -m ping -k -K 
