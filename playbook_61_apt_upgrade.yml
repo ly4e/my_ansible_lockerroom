@@ -1,0 +1,23 @@
+-
+  name: 'Execute apt update and apt upgrade on target system(s)-localhost'
+  #hosts: lts
+  #hosts: U643
+  #hosts: controller
+  hosts: localhost
+  tasks:
+
+    - name: Running "apt-get upgrade"
+      become: yes
+      apt:
+        update_cache: yes
+        upgrade: yes
+
+    - name: Remove useless packages from the cache
+      become: yes
+      apt:
+        autoclean: yes
+
+    - name: Remove dependencies that are no longer required
+      become: yes
+      apt:
+        autoremove: yes
