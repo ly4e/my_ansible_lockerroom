@@ -94,6 +94,7 @@
     - name: activate DotBot for linking and zsh configuration
       shell:
           cmd: ~/.dotfiles/install
+      ignore_errors: yes
 
   ### cloning PTF for testing purposes
     - name: ensuring the pentesters freamwork (PTF) repo clone exists
