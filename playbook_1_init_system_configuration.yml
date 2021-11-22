@@ -1,9 +1,9 @@
 -
   name: 'Execute multiple commands on target system(s)-localhost'
-  #hosts: lts
+  hosts: lts
   #hosts: U643
   #hosts: controller
-  hosts: localhost
+  #hosts: localhost
   tasks:
 
     - name: Running the equivalent of "apt-get update" as a separate step IF the last update was more than 3600 seconds ago 
@@ -36,6 +36,7 @@
         - cargo
         - golang
         - python3
+        - python3-pip
         - gobuster
         - hashid
         # other tools
