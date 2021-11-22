@@ -43,3 +43,7 @@ to limit which host it is running on from the scope it already has...
 ```
 ansible-playbook create_users_w_passwords.yml -i inventory.txt -k -K --limit=controller
 ```
+
+```
+ansible-playbook <playbookname.yml> -c local -i "localhost,"
+```
