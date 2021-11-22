@@ -38,3 +38,8 @@ ansible-playbook playbook_5_basic_setup_plus_cmds.yml -i inventory.txt -k -K
 ```
 ansible-playbook create_users_w_passwords.yml -i inventory.txt -k -K
 ```
+
+to limit which host it is running on from the scope it already has...
+```
+ansible-playbook create_users_w_passwords.yml -i inventory.txt -k -K --limit=controller
+```
