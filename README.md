@@ -47,3 +47,22 @@ ansible-playbook create_users_w_passwords.yml -i inventory.txt -k -K --limit=con
 ```
 ansible-playbook <playbookname.yml> -c local -i "localhost,"
 ```
+
+### trouble shooting packages
+`pip3 install docker yamllint ansible-lint`
+
+
+### other stuff
+
+```
+ansible -i inventory example -m ping -u centos
+#or
+ansible example -a "free -h" -u centos
+#or
+ansible -i inventory db -m setup
+#or
+ansible -i inventory multi -a "date"
+#or 
+ansible -i inventory multi -b -m yum -a "name=ntp state=present"
+
+```
