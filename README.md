@@ -1,5 +1,5 @@
 # My Ansible Locker Room of Playbooks and Notes
-
+A collection of playbooks and ansible related notes.
 ## Descriptions
 ### playbook_1_init_system_configuration:
 > basic configuration for getting a system up and running
