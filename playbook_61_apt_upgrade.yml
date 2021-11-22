@@ -1,23 +1,23 @@
 -
   name: 'Execute apt update and apt upgrade on target system(s)-localhost'
-  #hosts: lts
+  hosts: lts
   #hosts: U643
   #hosts: controller
-  hosts: localhost
+  #hosts: all
+  become: yes
   tasks:
 
-    - name: Running "apt-get upgrade"
-      become: yes
+    - name: Running "apt-get upgrade"    
       apt:
         update_cache: yes
+        cache_valid_time: 3600
         upgrade: yes
+      when: ansible_os_family == 'Debian'
 
     - name: Remove useless packages from the cache
-      become: yes
       apt:
         autoclean: yes
 
     - name: Remove dependencies that are no longer required
-      become: yes
       apt:
         autoremove: yes
