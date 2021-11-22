@@ -62,6 +62,7 @@
         - cargo
         - golang
         - python3
+        - python3-pip
         - gobuster
         - feroxbuster
         - seclists
