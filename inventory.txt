@@ -19,6 +19,7 @@ pi10    ansible_host=192.168.105.10     ansible_user=pi
 
 #LTS installs
 [lts]
+kube
 U641
 U642
 U643
