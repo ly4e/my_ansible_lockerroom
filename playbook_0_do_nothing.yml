@@ -3,6 +3,7 @@
   become: true
 
   tasks:
-    - meta: noop
+    - name: no op command
+      meta: noop
 
 ...

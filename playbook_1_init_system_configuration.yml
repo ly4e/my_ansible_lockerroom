@@ -54,7 +54,7 @@
 
     - name: cargo install rustscan
       shell:
-          cmd: cargo install rustscan
+        cmd: cargo install rustscan
 
     ### https://chaosmail.github.io/programming/2015/03/04/install-deb-packages-in-ansible/
     - name: Check if VS Code is installed
