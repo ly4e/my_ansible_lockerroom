@@ -1,21 +1,21 @@
 -
   name: 'Execute multiple commands on target system(s)-localhost'
   hosts: lts
-  #hosts: U643
-  #hosts: controller
-  #hosts: localhost
+  # hosts: U643
+  # hosts: controller
+  # hosts: localhost
   tasks:
 
-    - name: Running the equivalent of "apt-get update" as a separate step IF the last update was more than 3600 seconds ago 
+    - name: Running the equivalent of "apt-get update" as a separate step IF the last update was more than 3600 seconds ago
       apt:
-          update_cache: yes
-          cache_valid_time: 3600
+        update_cache: true
+        cache_valid_time: 3600
       become: true
 
-    #https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
     - name: install listed packages
       package:
-          name={{ item }} state=latest
+        name={{ item }} state=latest
       become: true
       with_items:
         - vim
@@ -64,49 +64,51 @@
 
     - name: Installing VS Code from a .deb package from the internet
       apt:
-         #https://code.visualstudio.com/docs/setup/linux
-         deb: https://go.microsoft.com/fwlink/?LinkID=760868
+        # https://code.visualstudio.com/docs/setup/linux
+        deb: https://go.microsoft.com/fwlink/?LinkID=760868
       become: true
       when: my_package_check_deb.rc == 1
 
     # - name: Remove useless packages from the cache
     #   apt:
-    #       autoclean: yes
+    #       autoclean: true
     #   become: true
 
     # - name: Remove dependencies that are no longer required
     #   apt:
-    #       autoremove: yes
+    #       autoremove: true
     #   become: true
 
   ### installing custom dotfiles and zsh configurations ###
     - name: ensuring the zgenom repo clone exists
       ansible.builtin.git:
-          repo: 'https://github.com/jandamm/zgenom.git'
-          dest: ~/.zgenom
-          update: no
+        repo: 'https://github.com/jandamm/zgenom.git'
+        dest: ~/.zgenom
+        update: false
 
     - name: Just ensuring the Dotfiles repo clone exists
       ansible.builtin.git:
-          repo: 'https://github.com/ly4e/customized_dotfiles_linux.git'
-          dest: ~/.dotfiles
-          update: yes
-    
+        repo: 'https://github.com/ly4e/customized_dotfiles_linux.git'
+        dest: ~/.dotfiles
+        update: true
+
     - name: activate DotBot for linking and zsh configuration
       shell:
-          cmd: ~/.dotfiles/install
-      ignore_errors: yes
+        cmd: ~/.dotfiles/install
+      ignore_errors: true
 
   ### cloning PTF for testing purposes
     - name: ensuring the pentesters freamwork (PTF) repo clone exists
       ansible.builtin.git:
-          repo: 'https://github.com/trustedsec/ptf/'
-          dest: ~/PTF
-          update: no
+        repo: 'https://github.com/trustedsec/ptf/'
+        dest: ~/PTF
+        update: false
 
   ### cloning custom_lists for the PTF
     - name: loading custom_list files for the the pentesters freamwork (PTF)
       ansible.builtin.git:
-          repo: 'https://github.com/ly4e/custom_PTF_module_files.git'
-          dest: ~/PTF/modules/custom_list/my_files
-          update: yes
+        repo: 'https://github.com/ly4e/custom_PTF_module_files.git'
+        dest: ~/PTF/modules/custom_list/my_files
+        update: true
+
+...

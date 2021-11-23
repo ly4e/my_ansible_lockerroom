@@ -1,47 +1,47 @@
 -
   name: 'Execute multiple commands on target system(s)-localhost'
   hosts: lts
-  #hosts: U643
-  #hosts: controller
-  #hosts: localhost
+  # hosts: U643
+  # hosts: controller
+  # hosts: localhost
   tasks:
     - name: Adding kali-rolling repo to /etc/apt/sources.list
       become: true
       lineinfile:
-          path: /etc/apt/sources.list
-          line: 'deb http://http.kali.org/kali kali-rolling main non-free contrib'
-          state: present
+        path: /etc/apt/sources.list
+        line: 'deb http://http.kali.org/kali kali-rolling main non-free contrib'
+        state: present
 
     - name: Adding commented kali-rolling repo to /etc/apt/sources.list
       become: true
       lineinfile:
-          path: /etc/apt/sources.list
-          line: '#deb http://http.kali.org/kali kali-rolling main non-free contrib'
-          state: present
-      
+        path: /etc/apt/sources.list
+        line: '#deb http://http.kali.org/kali kali-rolling main non-free contrib'
+        state: present
+
     - name: Adding Apt signing key for the kali repo
       become: true
       ansible.builtin.apt_key:
-          # ### to add the key to the key ring ###
-          # ### https://forums.linuxmint.com/viewtopic.php?t=342012 ###
-          # sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com ED444FF07D8D0BF6
-          # ###
-          # reference: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_key_module.html
-          # obtain the full length key id
-          # apt-key adv --list-public-keys --with-fingerprint --with-colons 
-          id: 44C6513A8E4FB3D30875F758ED444FF07D8D0BF6
-          keyserver: keyserver.ubuntu.com
-          state: present
+        # ### to add the key to the key ring ###
+        # ### https://forums.linuxmint.com/viewtopic.php?t=342012 ###
+        # sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com ED444FF07D8D0BF6
+        # ###
+        # reference: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_key_module.html
+        # obtain the full length key id
+        # apt-key adv --list-public-keys --with-fingerprint --with-colons
+        id: 44C6513A8E4FB3D30875F758ED444FF07D8D0BF6
+        keyserver: keyserver.ubuntu.com
+        state: present
 
     - name: Running "apt update"
       apt:
-          update_cache: yes
+        update_cache: true
       become: true
 
-    #https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
     - name: install listed packages
       package:
-          name={{ item }} state=latest
+        name={{ item }} state=latest
       become: true
       with_items:
         - exa
@@ -50,11 +50,13 @@
     - name: Removing kali-rolling repo from /etc/apt/sources.list
       become: true
       lineinfile:
-          path: /etc/apt/sources.list
-          line: 'deb http://http.kali.org/kali kali-rolling main non-free contrib'
-          state: absent
+        path: /etc/apt/sources.list
+        line: 'deb http://http.kali.org/kali kali-rolling main non-free contrib'
+        state: absent
 
-    - name: Refreshing "apt update" 
+    - name: Refreshing "apt update"
       apt:
-          update_cache: yes
+        update_cache: true
       become: true
+
+...
