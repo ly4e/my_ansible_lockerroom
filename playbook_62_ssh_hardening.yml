@@ -24,42 +24,6 @@
           line: "PermitRootLogin no"
       notify: restart_ssh
 
-
-
-#    # Remove unused software, open only required ports.
-#    - name: Remove unused packages.
-#      package:
-#        name:
-#          - nano
-#          - sendmail
-#        state: absent
-
-
-    # # Monitor logins and block suspect IP addresses.
-    # - name: Install fail2ban (Debian).
-    #   apt:
-    #     name: fail2ban
-    #     state: present
-    #   when: ansible_os_family == 'Debian'
-
-    # - name: Ensure fail2ban is running and enabled on boot.
-    #   service:
-    #     name: fail2ban
-    #     state: started
-    #     enabled: yes
-
-    # # Use SELinux (Security-Enhanced Linux).
-    # - name: Install Python SELinux library.
-    #   yum:
-    #     name: python3-libselinux
-    #     state: present
-
-    # - name: Ensure SELinux is enabled in `targeted` mode.
-    #   selinux:
-    #     policy: targeted
-    #     state: enforcing
-
-
 ### referenced::: https://github.com/geerlingguy/ansible-for-devops/blob/master/security/main.yml
 ### for inspiration and direction
 
