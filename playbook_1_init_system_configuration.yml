@@ -94,7 +94,7 @@
         update: true
 
     - name: activate DotBot for linking and zsh configuration
-      shell:
+      command:
         cmd: ~/.dotfiles/install
       ignore_errors: true
 
