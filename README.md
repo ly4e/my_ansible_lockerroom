@@ -32,6 +32,7 @@ ansible pi -i inventory.txt -m ping -k -K
 ansible all -i "192.168.105.113," -m ping -u ansi --private-key=~/.ssh/custom_ansi
 ansible -i 192.168.105.113, all -a 'uname -a' -u ansi --private-key=~/.ssh/custom_ansi
 ansible --inventory="192.168.105.113," all -m setup-a 'filter=*name*' -u ansi --private-key=~/.ssh/custom_ansi
+ansible -i localhost, all -a 'uname -a'
 ```
 
 ```
