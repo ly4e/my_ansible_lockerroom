@@ -66,3 +66,29 @@ ansible -i inventory multi -a "date"
 ansible -i inventory multi -b -m yum -a "name=ntp state=present"
 
 ```
+---
+---
+---
+## More misc commands to clean up later ##
+```
+    ansible-playbook playbook_0_do_nothing.yml --limit=kube --private-key=~/.ssh/custom_ansi
+    ansible-playbook playbook_0_do_nothing.yml --limit=U642 --private-key=~/.ssh/custom_ansi
+    ansible-playbook playbook_0_do_nothing.yml -k -K
+    ansible-playbook playbook_0_do_nothing.yml -k -K --limit=U641
+    ansible-playbook playbook_61_keyed_user_creation.yml -k -K --limit=U641
+    ssh -i ~/.ssh/custom_ansi ansi@192.168.105.219
+    ssh -i ~/.ssh/custom_ansi ansi@192.168.105.50
+    ssh 192.168.105.219
+    ssh 192.168.105.50
+
+```
+
+
+#### manually installing `sshpass` on MacOS for those times when keys are not in place...
+```
+### Reference: https://stackoverflow.com/questions/32255660/how-to-install-sshpass-on-mac  ###
+curl -O -L  https://fossies.org/linux/privat/sshpass-1.09.tar.gz && tar xvzf sshpass-1.09.tar.gz
+cd sshpass-1.09/
+./configure
+sudo make install
+```
