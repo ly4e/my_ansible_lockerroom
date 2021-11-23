@@ -21,15 +21,15 @@
 
     - name: Create authorized key
       authorized_key:
-        #user: "{{ ansible_env.USER }}"  #copies the key to the user being connected to by ansible
+        # user: "{{ ansible_env.USER }}"  #copies the key to the user being connected to by ansible
         user: ansi
         key: "{{ item }}"
-        validate_certs: False
+        validate_certs: false
       with_file:
-        #- /home/ansible/.ssh/id_rsa.pub
-        #- custom_key.pub
+        # - /home/ansible/.ssh/id_rsa.pub
+        # - custom_key.pub
         - "{{ lookup('env','HOME') + '/.ssh/custom_ansi.pub' }}"
-        #- https://github.com/ly4e.keys
+        # - https://github.com/ly4e.keys
 
 ### referenced::: https://github.com/geerlingguy/ansible-for-devops/blob/master/security/main.yml
 ### for inspiration and direction
