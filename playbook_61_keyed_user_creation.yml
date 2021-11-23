@@ -2,6 +2,8 @@
 - hosts: all
   become: true
 
+  tasks:
+
     # User account configuration.
     - name: Add a deployment user.
       user:
