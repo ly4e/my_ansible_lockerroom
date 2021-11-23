@@ -29,6 +29,9 @@ A collection of playbooks and ansible related notes.
 #### sample commands for future reference(s)
 ```
 ansible pi -i inventory.txt -m ping -k -K 
+ansible all -i "192.168.105.113," -m ping -u ansi --private-key=~/.ssh/custom_ansi
+ansible -i 192.168.105.113, all -a 'uname -a' -u ansi --private-key=~/.ssh/custom_ansi
+ansible --inventory="192.168.105.113," all -m setup-a 'filter=*name*' -u ansi --private-key=~/.ssh/custom_ansi
 ```
 
 ```
@@ -48,13 +51,10 @@ ansible-playbook create_users_w_passwords.yml -i inventory.txt -k -K --limit=con
 ansible-playbook <playbookname.yml> -c local -i "localhost,"
 ```
 
+#### example commands
 ```
  ansible-playbook playbook_0_do_nothing.yml -i inv/pi.txt --list-host
 ```
-
-### trouble shooting packages
-`pip3 install docker yamllint ansible-lint`
-
 
 ### other stuff
 
@@ -84,7 +84,6 @@ ansible -i inventory multi -b -m yum -a "name=ntp state=present"
     ssh -i ~/.ssh/custom_ansi ansi@192.168.105.50
     ssh 192.168.105.219
     ssh 192.168.105.50
-
 ```
 
 
