@@ -48,6 +48,10 @@ ansible-playbook create_users_w_passwords.yml -i inventory.txt -k -K --limit=con
 ansible-playbook <playbookname.yml> -c local -i "localhost,"
 ```
 
+```
+ ansible-playbook playbook_0_do_nothing.yml -i inv/pi.txt --list-host
+```
+
 ### trouble shooting packages
 `pip3 install docker yamllint ansible-lint`
 

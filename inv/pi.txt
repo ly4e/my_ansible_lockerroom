@@ -1,0 +1,7 @@
+#raspberry pi's
+[pi]
+#pi5     ansible_host=192.168.105.5      ansible_user=pi
+pi10    ansible_host=192.168.105.10     ansible_user=pi
+pi5     ansible_host=192.168.105.5      ansible_user=ansi   ansible_ssh_private_key=~/.ssh/custom_ansi
+###ssh keys not working for some reason# may have something todo with OMV???
+###pi10    ansible_host=192.168.105.10     ansible_user=ansi   ansible_ssh_private_key=~/.ssh/custom_ansi
