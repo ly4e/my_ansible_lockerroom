@@ -1,3 +1,4 @@
+---
 -
   name: 'Execute multiple commands on target system(s)-localhost'
   hosts: lts
@@ -55,7 +56,7 @@
       shell:
           cmd: cargo install rustscan
 
- ### https://chaosmail.github.io/programming/2015/03/04/install-deb-packages-in-ansible/
+    ### https://chaosmail.github.io/programming/2015/03/04/install-deb-packages-in-ansible/
     - name: Check if VS Code is installed
       command: dpkg-query -W code
       register: my_package_check_deb
@@ -79,7 +80,7 @@
     #       autoremove: true
     #   become: true
 
-  ### installing custom dotfiles and zsh configurations ###
+    ### installing custom dotfiles and zsh configurations ###
     - name: ensuring the zgenom repo clone exists
       ansible.builtin.git:
         repo: 'https://github.com/jandamm/zgenom.git'
@@ -97,14 +98,14 @@
         cmd: ~/.dotfiles/install
       ignore_errors: true
 
-  ### cloning PTF for testing purposes
+    ### cloning PTF for testing purposes
     - name: ensuring the pentesters freamwork (PTF) repo clone exists
       ansible.builtin.git:
         repo: 'https://github.com/trustedsec/ptf/'
         dest: ~/PTF
         update: false
 
-  ### cloning custom_lists for the PTF
+    ### cloning custom_lists for the PTF
     - name: loading custom_list files for the the pentesters freamwork (PTF)
       ansible.builtin.git:
         repo: 'https://github.com/ly4e/custom_PTF_module_files.git'

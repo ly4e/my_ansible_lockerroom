@@ -1,3 +1,4 @@
+---
 -
   name: 'Execute multiple commands on target system(s)-localhost'
   hosts: lts
@@ -35,11 +36,11 @@
 
     - name: Running the equivalent of "apt-get update" as a separate step IF the last update was more than 3600 seconds ago
       apt:
-        update_cache: yes
+        update_cache: true
         cache_valid_time: 3600
       become: true
 
-    #https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
     - name: install listed packages
       package:
         name={{ item }} state=latest
@@ -88,7 +89,7 @@
         update_cache: true
       become: true
 
- ### https://chaosmail.github.io/programming/2015/03/04/install-deb-packages-in-ansible/
+    ### https://chaosmail.github.io/programming/2015/03/04/install-deb-packages-in-ansible/
     - name: Check if VS Code is installed
       command: dpkg-query -W code
       register: my_package_check_deb
@@ -130,14 +131,14 @@
         cmd: ~/.dotfiles/install
       ignore_errors: true
 
-  ### cloning PTF for testing purposes
+    ### cloning PTF for testing purposes
     - name: ensuring the pentesters freamwork (PTF) repo clone exists
       ansible.builtin.git:
         repo: 'https://github.com/trustedsec/ptf/'
         dest: ~/PTF
         update: false
 
-  ### cloning custom_lists for the PTF
+    ### cloning custom_lists for the PTF
     - name: loading custom_list files for the the pentesters freamwork (PTF)
       ansible.builtin.git:
         repo: 'https://github.com/ly4e/custom_PTF_module_files.git'

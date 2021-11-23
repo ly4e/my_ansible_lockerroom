@@ -12,7 +12,6 @@
 #          - sendmail
 #        state: absent
 
-
     # # Monitor logins and block suspect IP addresses.
     # - name: Install fail2ban (Debian).
     #   apt:
@@ -39,3 +38,5 @@
 
 ### referenced::: https://github.com/geerlingguy/ansible-for-devops/blob/master/security/main.yml
 ### for inspiration and direction
+
+...

@@ -1,3 +1,4 @@
+---
 -
   name: 'Pip installing various packages'
   hosts: lts

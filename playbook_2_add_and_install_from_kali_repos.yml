@@ -1,3 +1,4 @@
+---
 -
   name: 'Execute multiple commands on target system(s)-localhost'
   hosts: lts

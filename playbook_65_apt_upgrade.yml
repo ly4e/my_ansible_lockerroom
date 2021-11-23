@@ -1,3 +1,4 @@
+---
 -
   name: 'Execute apt update and apt upgrade on target system(s)-localhost'
   hosts: lts
