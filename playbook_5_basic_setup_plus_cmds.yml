@@ -74,7 +74,7 @@
         - zaproxy
 
     - name: cargo install rustscan
-      shell:
+      command:
         cmd: cargo install rustscan
 
     - name: Removing kali-rolling repo from /etc/apt/sources.list

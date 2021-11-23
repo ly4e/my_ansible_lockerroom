@@ -53,7 +53,7 @@
         # - zaproxy   #available via PTF
 
     - name: cargo install rustscan
-      shell:
+      command:
         cmd: cargo install rustscan
 
     ### https://chaosmail.github.io/programming/2015/03/04/install-deb-packages-in-ansible/
