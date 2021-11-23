@@ -2,9 +2,10 @@
 
 
 kube    ansible_host=192.168.105.113    ansible_user=ansi   ansible_ssh_private_key=~/.ssh/custom_ansi
-U641    ansible_host=192.168.105.50     ansible_user=bkm
+U641    ansible_host=192.168.105.50     ansible_user=ansi   ansible_ssh_private_key=~/.ssh/custom_ansi
 U642    ansible_host=192.168.105.219    ansible_user=ansi   ansible_ssh_private_key=~/.ssh/custom_ansi
-U643    ansible_host=192.168.105.24     ansible_user=bkm
+U643    ansible_host=192.168.105.24     ansible_user=ansi   ansible_ssh_private_key=~/.ssh/custom_ansi
+#U643    ansible_host=192.168.105.24     ansible_user=bkm
 
 
 #controller box
