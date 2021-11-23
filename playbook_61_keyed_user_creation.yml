@@ -19,17 +19,6 @@
         state: present
         validate: 'visudo -cf %s'
 
-    - name: Create authorized key for the current ansible user
-      authorized_key:
-        user: "{{ ansible_env.USER }}"  #copies the key to the user being connected to by ansible
-        #user: ansi
-        key: "{{ item }}"
-      with_file:
-        #- /home/ansible/.ssh/id_rsa.pub
-        #- custom_key.pub
-        - "{{ lookup('env','HOME') + '/.ssh/custom_ansi.pub' }}"
-        #- https://github.com/ly4e.keys
-
     - name: Create authorized key
       authorized_key:
         #user: "{{ ansible_env.USER }}"  #copies the key to the user being connected to by ansible
