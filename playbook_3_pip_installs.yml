@@ -1,0 +1,31 @@
+-
+  name: 'Pip installing various packages'
+  hosts: lts
+  # hosts: U643
+  # hosts: controller
+  # hosts: localhost
+  become: true
+  tasks:
+    - name: Install multi python packages with version specifiers
+      pip:
+        name:
+          - bpytop
+          - yamllint
+          - ansible-lint
+          # - docker
+  #     executable: pip3
+
+    # Install "foo" and "bar" snap
+    - name: Install bpytop via snap
+      community.general.snap:
+        name:
+          - bpytop
+        state: present
+
+  #   # Remove "bpytop" via snap
+  #  - name: Remove bpytop
+  #     community.general.snap:
+  #       name: bpytop
+  #       state: absent
+
+...
