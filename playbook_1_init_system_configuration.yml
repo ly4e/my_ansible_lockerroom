@@ -90,7 +90,7 @@
       ansible.builtin.git:
           repo: 'https://github.com/ly4e/customized_dotfiles_linux.git'
           dest: ~/.dotfiles
-          update: no
+          update: yes
     
     - name: activate DotBot for linking and zsh configuration
       shell:
@@ -109,4 +109,4 @@
       ansible.builtin.git:
           repo: 'https://github.com/ly4e/custom_PTF_module_files.git'
           dest: ~/PTF/modules/custom_list/my_files
-          update: no
+          update: yes
