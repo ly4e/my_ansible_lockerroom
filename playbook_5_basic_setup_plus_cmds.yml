@@ -47,6 +47,8 @@
       become: true
       with_items:
         - vim
+        - git
+        - curl
         - zsh
         - bat
         - exa
@@ -57,13 +59,15 @@
         - lolcat
         - tmux
         - tree
+        - htop
+        - aptitude
+        - python3
+        - python3-pip
         - nmap
         - amass
         - rust-all
         - cargo
         - golang
-        - python3
-        - python3-pip
         - gobuster
         - feroxbuster
         - seclists
