@@ -7,32 +7,28 @@
 #ansible_ssh_private_key_file=~/.ssh/custom_ansi
 
 
-kube    ansible_host=192.168.105.113    ansible_user=ansi   ansible_ssh_private_key_file=~/.ssh/custom_ansi
 U641    ansible_host=192.168.105.50     ansible_user=ansi   ansible_ssh_private_key=~/.ssh/custom_ansi
 U642    ansible_host=192.168.105.219    ansible_user=ansi   ansible_ssh_private_key=~/.ssh/custom_ansi
 U643    ansible_host=192.168.105.24     ansible_user=ansi   ansible_ssh_private_key=~/.ssh/custom_ansi
 #U643    ansible_host=192.168.105.24     ansible_user=bkm
+U644    ansible_host=192.168.105.32     ansible_user=ansi   ansible_ssh_private_key_file=~/.ssh/custom_ansi
 
 
-#controller box
-[controller]
-kube
 
 #LTS installs
 [lts]
-kube
 U641
 U642
 U643
+U644
 
 # ubuntu servers
 [ubuntu]
-kube
 U641
 U642
 U643
+U644
 
 [all_servers:children]
-controller
 ubuntu
 lts
