@@ -1,10 +1,7 @@
 ---
 -
-  name: 'Execute apt update and apt upgrade on target system(s)-localhost'
-  hosts: lts
-  #  hosts: U643
-  #  hosts: controller
-  #  hosts: all
+  name: 'Execute apt update and apt upgrade on target system(s)'
+  hosts: all
   become: true
   tasks:
 

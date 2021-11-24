@@ -1,9 +1,8 @@
 ---
 -
   name: 'Execute multiple commands on target system(s)-localhost'
-  hosts: lts
+  hosts: all
   # hosts: U643
-  # hosts: controller
   # hosts: localhost
   tasks:
 

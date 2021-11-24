@@ -1,10 +1,7 @@
 ---
 -
   name: 'Pip installing various packages'
-  hosts: lts
-  # hosts: U643
-  # hosts: controller
-  # hosts: localhost
+  hosts: all
   become: true
   tasks:
     - name: Install multi python packages with version specifiers
