@@ -106,7 +106,7 @@
         update: false
 
     ### cloning custom_lists for the PTF
-    - name: loading custom_list files for the the pentesters freamwork (PTF)
+    - name: loading custom_list files for the the pentesters framework (PTF)
       ansible.builtin.git:
         repo: 'https://github.com/ly4e/custom_PTF_module_files.git'
         dest: ~/PTF/modules/custom_list/my_files

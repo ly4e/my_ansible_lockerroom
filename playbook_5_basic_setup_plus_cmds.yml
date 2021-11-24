@@ -136,14 +136,14 @@
       ignore_errors: true
 
     ### cloning PTF for testing purposes
-    - name: ensuring the pentesters freamwork (PTF) repo clone exists
+    - name: ensuring the pentesters framework (PTF) repo clone exists
       ansible.builtin.git:
         repo: 'https://github.com/trustedsec/ptf/'
         dest: ~/PTF
         update: false
 
     ### cloning custom_lists for the PTF
-    - name: loading custom_list files for the the pentesters freamwork (PTF)
+    - name: loading custom_list files for the the pentesters framework (PTF)
       ansible.builtin.git:
         repo: 'https://github.com/ly4e/custom_PTF_module_files.git'
         dest: ~/PTF/modules/custom_list/my_files
