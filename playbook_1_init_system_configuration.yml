@@ -32,17 +32,18 @@
         - tree
         - htop
         - aptitude
+        - python3
+        - python3-pip
+        # may install the items below in another playbook... debating
         - rust-all
         - cargo
         - golang
-        - python3
-        - python3-pip
         - gobuster
         - hashid
         # other tools
-#        - nmap       #available via PTF
-#        - hashcat    #available via PTF
-      ### #failed without kali repo# ###
+        # - nmap       #available via PTF
+        # - hashcat    #available via PTF
+        ### #failed without kali repo# ###
         # - exa       ## available via kali repo
         # - amass     #available via PTF
         # - feroxbuster   ## available via kali repo
@@ -98,7 +99,7 @@
       ignore_errors: true
 
     ### cloning PTF for testing purposes
-    - name: ensuring the pentesters freamwork (PTF) repo clone exists
+    - name: ensuring the pentesters framework (PTF) repo clone exists
       ansible.builtin.git:
         repo: 'https://github.com/trustedsec/ptf/'
         dest: ~/PTF
