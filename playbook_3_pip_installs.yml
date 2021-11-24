@@ -13,7 +13,7 @@
           - bpytop
           - yamllint
           - ansible-lint
-          - pypisearch  # ref: https://pypi.org/project/pypisearch/ # usage: `python3 -m pypisearch ansible`
+          - pypisearch  # usage: `python3 -m pypisearch ansible` # ref: https://pypi.org/project/pypisearch/
           # - docker
   #     executable: pip3
 
