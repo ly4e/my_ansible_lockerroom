@@ -5,7 +5,7 @@
   become: true
   tasks:
 
-    - name: Running "apt-get upgrade"
+    - name: Running "apt upgrade and cleanup"
       apt:
         update_cache: true
         cache_valid_time: 3600
@@ -15,3 +15,5 @@
         # Remove dependencies that are no longer required
         autoremove: true
       when: ansible_os_family == 'Debian'
+
+...
