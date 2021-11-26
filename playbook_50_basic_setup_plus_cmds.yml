@@ -1,8 +1,7 @@
 ---
--
-  name: 'Execute multiple commands on target system(s)-localhost'
+- name: 'Execute multiple commands on target system(s)-localhost'
   hosts: all
-  
+
   tasks:
     - name: Adding kali-rolling repo to /etc/apt/sources.list
       become: true
@@ -104,16 +103,6 @@
         deb: https://go.microsoft.com/fwlink/?LinkID=760868
       become: true
       when: my_package_check_deb.rc == 1
-
-    # - name: Remove useless packages from the cache
-    #   apt:
-    #     autoclean: yes
-    #   become: true
-
-    # - name: Remove dependencies that are no longer required
-    #   apt:
-    #     autoremove: yes
-    #   become: true
 
     ### installing customer dotfiles and zsh configurations ###
     - name: ensuring the zgenom repo clone exists
