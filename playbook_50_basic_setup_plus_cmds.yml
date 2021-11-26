@@ -1,10 +1,8 @@
 ---
 -
   name: 'Execute multiple commands on target system(s)-localhost'
-  hosts: lts
-  # hosts: U643
-  # hosts: controller
-  # hosts: localhost
+  hosts: all
+  
   tasks:
     - name: Adding kali-rolling repo to /etc/apt/sources.list
       become: true
