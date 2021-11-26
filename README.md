@@ -11,7 +11,7 @@ A collection of playbooks and ansible related notes.
 > 
 > currently leaves an extra commented out version of the kali repo for ease of searching and testing
 
-### playbook_5_basic_setup_plus_cmds:
+### playbook_50_basic_setup_plus_cmds:
 > basic configuration for getting a system up and running
 > 
 > Installs more packages from the kali-rolling repo
