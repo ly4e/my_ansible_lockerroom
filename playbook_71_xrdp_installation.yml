@@ -15,10 +15,7 @@
 
     - name: install ubuntu desktop  
       package:
-        # name: ubuntu-desktop
-        name: 
-          - xfce4
-          - xubuntu-desktop
+        name: ubuntu-desktop
         state: present
     
     # may need to ensure a desktop environment is installed first ... possible todo for later #
