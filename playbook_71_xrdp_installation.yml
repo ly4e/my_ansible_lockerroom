@@ -1,0 +1,19 @@
+---
+- name: 'Execute multiple commands on target system(s)-localhost'
+  hosts: all
+
+  tasks:
+
+    - name: Running "apt update" IF the last update was more than 3600 seconds ago
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+      become: true
+
+    - name: install xrdp 
+      package:
+        name: xrdp
+        state: present
+      become: true
+      
+...
