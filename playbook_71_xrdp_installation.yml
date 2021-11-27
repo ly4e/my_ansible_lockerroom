@@ -1,19 +1,53 @@
 ---
 - name: 'Execute multiple commands on target system(s)-localhost'
   hosts: all
+  become: true
+
+  handlers:
+    - name: restart_xrdp
+      service: name=xrdp state=restarted
 
   tasks:
-
     - name: Running "apt update" IF the last update was more than 3600 seconds ago
       apt:
         update_cache: true
         cache_valid_time: 3600
-      become: true
 
+    # may need to ensure a desktop environment is installed first ... possible todo for later #
     - name: install xrdp 
       package:
         name: xrdp
         state: present
-      become: true
-      
+
+    - name: add xrdp to sslcert group
+      user:
+        name: xrdp
+        groups: ssl-cert
+        shell: /sbin/nologin
+        append: true
+
+    - name: start and enable xrdp service
+      service:
+        name: xrdp
+        state: started
+        enabled: true
+
+    - name: add troubleshooting lines to /etc/xrdp/startwm.sh (line1)
+      lineinfile:
+        path: /etc/xrdp/startwm.sh
+        search_string: '^# published under '
+        insertafter: '^# published under '
+        line: 'unset DBUS_SESSION_BUS_ADDRESS'
+        state: present
+      notify: restart_xrdp
+
+    - name: add troubleshooting lines to /etc/xrdp/startwm.sh (line2)
+      lineinfile:
+        path: /etc/xrdp/startwm.sh
+        search_string: '^# published under '
+        insertafter: '^# published under '
+        line: 'unset XDG_RUNTIME_DIR'
+        state: present
+      notify: restart_xrdp
+        
 ...
