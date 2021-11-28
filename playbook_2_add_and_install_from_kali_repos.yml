@@ -45,6 +45,7 @@
       with_items:
         - exa
         - feroxbuster
+        - seclists
 
     - name: Removing kali-rolling repo from /etc/apt/sources.list
       become: true
