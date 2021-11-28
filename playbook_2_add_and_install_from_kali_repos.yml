@@ -43,9 +43,17 @@
         name={{ item }} state=latest
       become: true
       with_items:
+        # other tools
+        # - nmap       #available via PTF
+        # - hashcat    #available via PTF
+        ### #failed without kali repo# ###
         - exa
         - feroxbuster
         - seclists
+        # - amass     #available via PTF
+        # - metasploit-framework    #available via PTF
+        # - burpsuite #available via PTF
+        # - zaproxy   #available via PTF
 
     - name: Removing kali-rolling repo from /etc/apt/sources.list
       become: true
