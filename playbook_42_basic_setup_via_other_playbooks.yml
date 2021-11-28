@@ -3,8 +3,14 @@
 - import_playbook: playbook_1_init_system_configuration.yml
 - import_playbook: playbook_2_add_and_install_from_kali_repos.yml
 - import_playbook: playbook_3_pip_installs.yml
+
 - import_playbook: playbook_61_keyed_user_creation.yml
 - import_playbook: playbook_62_ssh_hardening.yml
-- import_playbook: playbook_75_apt_upgrade.yml
+
+- name: update, upgrade, cleanup
+  import_playbook: playbook_75_apt_upgrade.yml
+ 
+- name: restart if needed
+  import_playbook: playbook_76_restart_if_needed.yml
 
 ...
