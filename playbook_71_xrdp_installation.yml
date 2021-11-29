@@ -19,7 +19,7 @@
         state: present
     
     # may need to ensure a desktop environment is installed first ... possible todo for later #
-    - name: install xrdp 
+    - name: install xrdp
       package:
         name: xrdp
         state: present
@@ -56,9 +56,9 @@
       notify: restart_xrdp
 
 - name: update, upgrade, cleanup
-  import_playbook: playbook_75_apt_upgrade.yml  
+  import_playbook: playbook_75_apt_upgrade.yml
 
 - name: restart if needed
   import_playbook: playbook_76_restart_if_needed.yml
-    
+
 ...
