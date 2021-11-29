@@ -10,7 +10,6 @@
         shell: /bin/bash
         state: present
 
-    # Disable root login and use `sudo`.
     - name: Add sudo rights for deployment user.
       lineinfile:
         dest: /etc/sudoers
@@ -40,6 +39,14 @@
         name: bkm
         shell: /bin/bash
         state: present
+
+    - name: Add sudo rights for deployment user.
+      lineinfile:
+        dest: /etc/sudoers
+        regexp: '^bkm'
+        line: 'bkm ALL=(ALL) NOPASSWD: ALL'
+        state: present
+        validate: 'visudo -cf %s'
 
     - name: load authorized keys - bkm
       authorized_key:
