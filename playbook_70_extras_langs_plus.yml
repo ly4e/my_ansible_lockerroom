@@ -13,7 +13,7 @@
     # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
     - name: install listed packages
       package:
-        name={{ item }} state=latest
+        name={{ item }} state=present
       become: true
       with_items:
         # may install the items below in another playbook... debating

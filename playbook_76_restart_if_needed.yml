@@ -10,7 +10,7 @@
 
   tasks:
     - name: Reboot system if required
-      #command: shutdown -r now 'Rebooting to complete system upgrade'
+      # command: shutdown -r now 'Rebooting to complete system upgrade'
       command: sleep 1
         removes=/var/run/reboot-required
       notify:
