@@ -2,7 +2,7 @@
 -
   name: 'Execute multiple commands on target system(s)-localhost'
   hosts: all
-  
+
   tasks:
     - name: Adding kali-rolling repo to /etc/apt/sources.list
       become: true
@@ -40,16 +40,17 @@
     # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
     - name: install listed packages
       package:
-        name={{ item }} state=latest
+        name={{ item }} state=present
       become: true
       with_items:
         # other tools
         # - nmap       #available via PTF
         # - hashcat    #available via PTF
+        # - gobuster
         ### #failed without kali repo# ###
         - exa
         - feroxbuster
-        - seclists
+        # - seclists # seems to break during the installation process for some reason?
         # - amass     #available via PTF
         # - metasploit-framework    #available via PTF
         # - burpsuite #available via PTF

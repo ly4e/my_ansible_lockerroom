@@ -7,18 +7,18 @@
     - name: reboot_box
       reboot:
         reboot_timeout: 300
-  
-  tasks:
 
+  tasks:
     - name: Reboot system if required
-      #command: shutdown -r now 'Rebooting to complete system upgrade'
-      command: sleep 1 
+      # command: shutdown -r now 'Rebooting to complete system upgrade'
+      command: sleep 1
         removes=/var/run/reboot-required
       notify:
         reboot_box
-       
+
     # - name: Wait for system to become reachable again
     #  wait_for_connection:
     #    delay: 10
-    #    timeout: 300       
+    #    timeout: 300
+
 ...

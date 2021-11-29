@@ -1,15 +1,35 @@
 ---
 
-- import_playbook: playbook_1_init_system_configuration.yml
-- import_playbook: playbook_2_add_and_install_from_kali_repos.yml
-- import_playbook: playbook_3_pip_installs.yml
+- name: update, upgrade, cleanup
+  import_playbook: playbook_75_apt_upgrade.yml
 
-- import_playbook: playbook_61_keyed_user_creation.yml
-- import_playbook: playbook_62_ssh_hardening.yml
+- name: restart if needed
+  import_playbook: playbook_76_restart_if_needed.yml
+
+- name: baseline packages and terminal configurations
+  import_playbook: playbook_1_init_system_configuration.yml
+
+- name: adding exa and feroxbuster from kali repos
+  import_playbook: playbook_2_add_and_install_from_kali_repos.yml
+
+- name: pip installing specific packages as needed
+  import_playbook: playbook_3_pip_installs.yml
+
+- name: user creation and key migration for future usage
+  import_playbook: playbook_61_keyed_user_creation.yml
+
+- name: disable password auth
+  import_playbook: playbook_62_ssh_hardening.yml
+
+- name: installing golang and rust plus
+  import_playbook: playbook_70_extras_langs_plus.yml
+
+- name: cloning PTF locally
+  import_playbook: playbook_72_PTF_installation.yml
 
 - name: update, upgrade, cleanup
   import_playbook: playbook_75_apt_upgrade.yml
- 
+
 - name: restart if needed
   import_playbook: playbook_76_restart_if_needed.yml
 

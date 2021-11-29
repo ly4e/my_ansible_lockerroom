@@ -1,0 +1,41 @@
+---
+- name: 'adding multiple languages and a couple additional packages'
+  hosts: all
+
+  tasks:
+
+    - name: Running the equivalent of "apt-get update" as a separate step IF the last update was more than 3600 seconds ago
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+      become: true
+
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
+    - name: install listed packages
+      package:
+        name={{ item }} state=present
+      become: true
+      with_items:
+        # may install the items below in another playbook... debating
+        - rust-all
+        - cargo
+        - golang
+        - gobuster
+        - hashid
+        # other tools
+        # - nmap       #available via PTF
+        # - hashcat    #available via PTF
+        ### #failed without kali repo# ###
+        # - exa       ## available via kali repo
+        # - amass     #available via PTF
+        # - feroxbuster   ## available via kali repo
+        # - seclists  #available via PTF
+        # - metasploit-framework    #available via PTF
+        # - burpsuite #available via PTF
+        # - zaproxy   #available via PTF
+
+    - name: cargo install rustscan
+      command:
+        cmd: cargo install rustscan
+
+...

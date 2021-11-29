@@ -1,0 +1,19 @@
+---
+- name: 'Snap installing various packages'
+  hosts: all
+  become: true
+  tasks:
+    # Install "foo" and "bar" snap
+    - name: Install bpytop via snap
+      community.general.snap:
+        name:
+          - bpytop
+        state: present
+
+  #   # Remove "bpytop" via snap
+  #  - name: Remove bpytop
+  #     community.general.snap:
+  #       name: bpytop
+  #       state: absent
+
+...

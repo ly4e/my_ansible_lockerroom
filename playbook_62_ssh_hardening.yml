@@ -1,8 +1,10 @@
 ---
 # imports playbook 61 to help ensure there is a keyed user that will have ssh access once the hardening of ssh is in place
-- import_playbook: playbook_61_keyed_user_creation.yml
+- name: ensure ssh keys and local user is present
+  import_playbook: playbook_61_keyed_user_creation.yml
 
-- hosts: all
+- name: hardening of ssh
+  hosts: all
   become: true
 
   handlers:

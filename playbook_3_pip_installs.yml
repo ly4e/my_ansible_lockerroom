@@ -1,6 +1,5 @@
 ---
--
-  name: 'Pip installing various packages'
+- name: 'Pip installing various packages'
   hosts: all
   become: true
   tasks:
@@ -13,18 +12,5 @@
           - pypisearch  # usage: `python3 -m pypisearch ansible` # ref: https://pypi.org/project/pypisearch/
           # - docker
   #     executable: pip3
-
-    # Install "foo" and "bar" snap
-    - name: Install bpytop via snap
-      community.general.snap:
-        name:
-          - bpytop
-        state: present
-
-  #   # Remove "bpytop" via snap
-  #  - name: Remove bpytop
-  #     community.general.snap:
-  #       name: bpytop
-  #       state: absent
 
 ...
