@@ -29,9 +29,6 @@
         # - custom_key.pub
         - "{{ lookup('env','HOME') + '/.ssh/custom_ansi.pub' }}"
         - "{{ lookup('env','HOME') + '/.ssh/id_ly4e_github.pub' }}"
-        # - https://github.com/ly4e.keys
-
-
 
     # User account configuration.
     - name: ensure second user - bkm
@@ -40,7 +37,7 @@
         shell: /bin/bash
         state: present
 
-    - name: Add sudo rights for deployment user.
+    - name: Add sudo rights for bkm user
       lineinfile:
         dest: /etc/sudoers
         regexp: '^bkm'
@@ -48,17 +45,13 @@
         state: present
         validate: 'visudo -cf %s'
 
-    - name: load authorized keys - bkm
+    - name: load authorized key - bkm
       authorized_key:
-        # user: "{{ ansible_env.USER }}"  #copies the key to the user being connected to by ansible
         user: bkm
-        key: "{{ item }}"
+        # key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEcSd0/ZEyNcZDhDjE9HLLrc8PYNidzav3ChTlgwRrjp id_ly4e_github" 
+        key: https://github.com/ly4e.keys
         validate_certs: false
-      with_file:
-        # - /home/ansible/.ssh/id_rsa.pub
-        # - custom_key.pub
-        - "{{ lookup('env','HOME') + '/.ssh/custom_ansi.pub' }}"
-        # - https://github.com/ly4e.keys
+        state: present
 
 ### referenced::: https://github.com/geerlingguy/ansible-for-devops/blob/master/security/main.yml
 ### for inspiration and direction
