@@ -1,9 +1,8 @@
 ---
-- name: 'Execute multiple commands on target system(s)-localhost'
+- name: 'baseline configuration of system terminal and programs'
   hosts: all
 
   tasks:
-
     - name: Running the equivalent of "apt-get update" as a separate step IF the last update was more than 3600 seconds ago
       apt:
         update_cache: true

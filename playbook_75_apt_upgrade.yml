@@ -1,10 +1,9 @@
 ---
--
-  name: 'Execute apt update and apt upgrade on target system(s)'
+- name: 'Execute apt update and apt upgrade on target system(s)'
   hosts: all
   become: true
-  tasks:
 
+  tasks:
     - name: Running "apt upgrade and cleanup"
       apt:
         update_cache: true
