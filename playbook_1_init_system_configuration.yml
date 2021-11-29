@@ -32,6 +32,7 @@
         - aptitude
         - python3
         - python3-pip
+        - exa # will fail on a regular Ubuntu LTS install
         # may install the items below in another playbook... debating
         - rust-all
         - cargo
