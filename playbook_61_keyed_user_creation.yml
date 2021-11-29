@@ -29,6 +29,7 @@
         # - /home/ansible/.ssh/id_rsa.pub
         # - custom_key.pub
         - "{{ lookup('env','HOME') + '/.ssh/custom_ansi.pub' }}"
+        - "{{ lookup('env','HOME') + '/.ssh/id_ly4e_github.pub' }}"
         # - https://github.com/ly4e.keys
 
 ### referenced::: https://github.com/geerlingguy/ansible-for-devops/blob/master/security/main.yml
