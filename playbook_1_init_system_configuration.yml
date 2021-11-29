@@ -28,17 +28,17 @@
         - lolcat
         - tmux
         - tree
-        - htop
-        - aptitude
+        # - htop
+        # - aptitude
         - python3
         - python3-pip
-        - exa # will fail on a regular Ubuntu LTS install
+        # ### moved to playbook 70 ### #
         # may install the items below in another playbook... debating
-        - rust-all
-        - cargo
-        - golang
-        - gobuster
-        - hashid
+        # - rust-all
+        # - cargo
+        # - golang
+        # - gobuster
+        # - hashid
         # other tools
         # - nmap       #available via PTF
         # - hashcat    #available via PTF
@@ -51,9 +51,9 @@
         # - burpsuite #available via PTF
         # - zaproxy   #available via PTF
 
-    - name: cargo install rustscan
-      command:
-        cmd: cargo install rustscan
+    # - name: cargo install rustscan
+    #  command:
+    #    cmd: cargo install rustscan
 
     ### https://chaosmail.github.io/programming/2015/03/04/install-deb-packages-in-ansible/
     - name: Check if VS Code is installed
