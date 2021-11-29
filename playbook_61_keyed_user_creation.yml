@@ -31,6 +31,27 @@
         - "{{ lookup('env','HOME') + '/.ssh/custom_ansi.pub' }}"
         # - https://github.com/ly4e.keys
 
+
+
+    # User account configuration.
+    - name: ensure second user - bkm
+      user:
+        name: bkm
+        shell: /bin/bash
+        state: present
+
+    - name: load authorized keys - bkm
+      authorized_key:
+        # user: "{{ ansible_env.USER }}"  #copies the key to the user being connected to by ansible
+        user: bkm
+        key: "{{ item }}"
+        validate_certs: false
+      with_file:
+        # - /home/ansible/.ssh/id_rsa.pub
+        # - custom_key.pub
+        - "{{ lookup('env','HOME') + '/.ssh/custom_ansi.pub' }}"
+        # - https://github.com/ly4e.keys
+
 ### referenced::: https://github.com/geerlingguy/ansible-for-devops/blob/master/security/main.yml
 ### for inspiration and direction
 ...
