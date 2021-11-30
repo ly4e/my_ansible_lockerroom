@@ -27,6 +27,7 @@
         - lolcat
         - tmux
         - tree
+        - xclip
         # - htop
         # - aptitude
         - python3
