@@ -22,6 +22,7 @@
         - golang
         - gobuster
         - hashid
+        # - docker.io
         # other tools
         # - nmap       #available via PTF
         # - hashcat    #available via PTF
