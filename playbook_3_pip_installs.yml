@@ -10,7 +10,8 @@
           # - yamllint
           # - ansible-lint
           - pypisearch  # usage: `python3 -m pypisearch ansible` # ref: https://pypi.org/project/pypisearch/
-          # - docker
+          # - name-that-hash
+          # - nth
   #     executable: pip3
 
 ...

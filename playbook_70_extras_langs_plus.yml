@@ -21,7 +21,7 @@
         - cargo
         - golang
         - gobuster
-        - hashid
+        # - hashid # replaced with name-that-hash & nth from a pip3 install
         # - docker.io
         # other tools
         # - nmap       #available via PTF
